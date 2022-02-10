@@ -17,7 +17,7 @@
 from distutils.version import LooseVersion
 
 import matplotlib as mat
-import numpy as np
+import nlcpy as np
 import pandas as pd
 from matplotlib.axes._base import _process_plot_format
 from pandas.core.dtypes.inference import is_list_like

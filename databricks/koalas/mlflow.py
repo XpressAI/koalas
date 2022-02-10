@@ -20,7 +20,7 @@ MLflow-related functions to load models and apply them to Koalas dataframes.
 from mlflow import pyfunc
 from pyspark.sql.types import DataType
 import pandas as pd
-import numpy as np
+import nlcpy as np
 from typing import Any
 
 from databricks.koalas.utils import lazy_property, default_session

@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import numpy as np  # noqa: F401
+import nlcpy as np  # noqa: F401
 import pandas  # noqa: F401
 import pandas as pd  # noqa: F401
 from numpy import *  # noqa: F401

@@ -23,7 +23,7 @@ from typing import Dict, List, Optional, Tuple, Union, TYPE_CHECKING
 from itertools import accumulate
 import py4j
 
-import numpy as np
+import nlcpy as np
 import pandas as pd
 from pandas.api.types import CategoricalDtype, is_datetime64_dtype, is_datetime64tz_dtype
 import pyspark

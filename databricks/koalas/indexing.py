@@ -28,7 +28,7 @@ from pyspark import sql as spark
 from pyspark.sql import functions as F
 from pyspark.sql.types import BooleanType, LongType
 from pyspark.sql.utils import AnalysisException
-import numpy as np
+import nlcpy as np
 
 from databricks import koalas as ks  # noqa: F401
 from databricks.koalas.internal import (

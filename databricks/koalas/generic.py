@@ -25,7 +25,7 @@ from functools import reduce
 from typing import Any, List, Optional, Tuple, Union, TYPE_CHECKING, cast
 import warnings
 
-import numpy as np  # noqa: F401
+import nlcpy as np  # noqa: F401
 import pandas as pd
 from pandas.api.types import is_list_like
 

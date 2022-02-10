@@ -72,64 +72,64 @@ assert_python_version()
 assert_pyspark_version()
 
 import pyspark
-import numpy
+# import numpy
 
-if LooseVersion(pyspark.__version__) < LooseVersion("3.1") and LooseVersion(
-    numpy.__version__
-) >= LooseVersion("1.20"):
-    import logging
+# if LooseVersion(pyspark.__version__) < LooseVersion("3.1") and LooseVersion(
+#     numpy.__version__
+# ) >= LooseVersion("1.20"):
+#     import logging
 
-    logging.warning(
-        'Found numpy version "{numpy_version}" installed with pyspark version "{pyspark_version}". '
-        "Some functions will not work well with this combination of "
-        'numpy version "{numpy_version}" and pyspark version "{pyspark_version}". '
-        "Please try to upgrade pyspark version to 3.1 or above, "
-        "or downgrade numpy version to below 1.20.".format(
-            numpy_version=numpy.__version__, pyspark_version=pyspark.__version__
-        )
-    )
+#     logging.warning(
+#         'Found numpy version "{numpy_version}" installed with pyspark version "{pyspark_version}". '
+#         "Some functions will not work well with this combination of "
+#         'numpy version "{numpy_version}" and pyspark version "{pyspark_version}". '
+#         "Please try to upgrade pyspark version to 3.1 or above, "
+#         "or downgrade numpy version to below 1.20.".format(
+#             numpy_version=numpy.__version__, pyspark_version=pyspark.__version__
+#         )
+#     )
 
 
-import pyarrow
+# import pyarrow
 
-if LooseVersion(pyspark.__version__) < LooseVersion("3.0"):
-    if (
-        LooseVersion(pyarrow.__version__) >= LooseVersion("0.15")
-        and "ARROW_PRE_0_15_IPC_FORMAT" not in os.environ
-    ):
-        import logging
+# if LooseVersion(pyspark.__version__) < LooseVersion("3.0"):
+#     if (
+#         LooseVersion(pyarrow.__version__) >= LooseVersion("0.15")
+#         and "ARROW_PRE_0_15_IPC_FORMAT" not in os.environ
+#     ):
+#         import logging
 
-        logging.warning(
-            "'ARROW_PRE_0_15_IPC_FORMAT' environment variable was not set. It is required to "
-            "set this environment variable to '1' in both driver and executor sides if you use "
-            "pyarrow>=0.15 and pyspark<3.0. "
-            "Koalas will set it for you but it does not work if there is a Spark context already "
-            "launched."
-        )
-        # This is required to support PyArrow 0.15 in PySpark versions lower than 3.0.
-        # See SPARK-29367.
-        os.environ["ARROW_PRE_0_15_IPC_FORMAT"] = "1"
-elif "ARROW_PRE_0_15_IPC_FORMAT" in os.environ:
-    raise RuntimeError(
-        "Please explicitly unset 'ARROW_PRE_0_15_IPC_FORMAT' environment variable in both "
-        "driver and executor sides. It is required to set this environment variable only "
-        "when you use pyarrow>=0.15 and pyspark<3.0."
-    )
+#         logging.warning(
+#             "'ARROW_PRE_0_15_IPC_FORMAT' environment variable was not set. It is required to "
+#             "set this environment variable to '1' in both driver and executor sides if you use "
+#             "pyarrow>=0.15 and pyspark<3.0. "
+#             "Koalas will set it for you but it does not work if there is a Spark context already "
+#             "launched."
+#         )
+#         # This is required to support PyArrow 0.15 in PySpark versions lower than 3.0.
+#         # See SPARK-29367.
+#         os.environ["ARROW_PRE_0_15_IPC_FORMAT"] = "1"
+# elif "ARROW_PRE_0_15_IPC_FORMAT" in os.environ:
+#     raise RuntimeError(
+#         "Please explicitly unset 'ARROW_PRE_0_15_IPC_FORMAT' environment variable in both "
+#         "driver and executor sides. It is required to set this environment variable only "
+#         "when you use pyarrow>=0.15 and pyspark<3.0."
+#     )
 
-if (
-    LooseVersion(pyarrow.__version__) >= LooseVersion("2.0.0")
-    and "PYARROW_IGNORE_TIMEZONE" not in os.environ
-):
-    import logging
+# if (
+#     LooseVersion(pyarrow.__version__) >= LooseVersion("2.0.0")
+#     and "PYARROW_IGNORE_TIMEZONE" not in os.environ
+# ):
+#     import logging
 
-    logging.warning(
-        "'PYARROW_IGNORE_TIMEZONE' environment variable was not set. It is required to "
-        "set this environment variable to '1' in both driver and executor sides if you use "
-        "pyarrow>=2.0.0. "
-        "Koalas will set it for you but it does not work if there is a Spark context already "
-        "launched."
-    )
-    os.environ["PYARROW_IGNORE_TIMEZONE"] = "1"
+#     logging.warning(
+#         "'PYARROW_IGNORE_TIMEZONE' environment variable was not set. It is required to "
+#         "set this environment variable to '1' in both driver and executor sides if you use "
+#         "pyarrow>=2.0.0. "
+#         "Koalas will set it for you but it does not work if there is a Spark context already "
+#         "launched."
+#     )
+#     os.environ["PYARROW_IGNORE_TIMEZONE"] = "1"
 
 from databricks.koalas.frame import DataFrame
 from databricks.koalas.indexes.base import Index

@@ -16,7 +16,7 @@
 from collections import OrderedDict
 from typing import Callable, Any
 
-import numpy as np
+import nlcpy as np
 from pyspark.sql import functions as F, Column
 from pyspark.sql.types import DoubleType, LongType, BooleanType
 

@@ -19,7 +19,7 @@ String functions on Koalas Series
 """
 from typing import Union, TYPE_CHECKING, cast, Optional, List
 
-import numpy as np
+import nlcpy as np
 
 from pyspark.sql.types import StringType, BinaryType, ArrayType, LongType, MapType
 from pyspark.sql import functions as F

@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 import pytest
-import numpy
+import nlcpy as numpy
 import tempfile
 import atexit
 import os

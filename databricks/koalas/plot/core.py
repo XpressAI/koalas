@@ -17,7 +17,7 @@
 import importlib
 
 import pandas as pd
-import numpy as np
+import nlcpy as np
 from pyspark.ml.feature import Bucketizer
 from pyspark.mllib.stat import KernelDensity
 from pyspark.sql import functions as F

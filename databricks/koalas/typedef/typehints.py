@@ -22,7 +22,7 @@ import decimal
 from inspect import getfullargspec, isclass
 from typing import Generic, List, Optional, Tuple, TypeVar, Union  # noqa: F401
 
-import numpy as np
+import nlcpy as np
 import pandas as pd
 from pandas.api.types import CategoricalDtype, pandas_dtype
 from pandas.api.extensions import ExtensionDtype
@@ -155,8 +155,8 @@ def as_spark_type(tpe: Union[str, type, Dtype], *, raise_error: bool = True) -> 
             return None
         return types.ArrayType(element_type)
     # BinaryType
-    elif tpe in (bytes, np.character, np.bytes_, np.string_):
-        return types.BinaryType()
+    # elif tpe in (bytes, np.character, np.bytes_, np.string_):
+    #     return types.BinaryType()
     # BooleanType
     elif tpe in (bool, np.bool, "bool", "?"):
         return types.BooleanType()
@@ -180,7 +180,7 @@ def as_spark_type(tpe: Union[str, type, Dtype], *, raise_error: bool = True) -> 
     elif tpe in (np.int16, "int16", "short"):
         return types.ShortType()
     # StringType
-    elif tpe in (str, np.unicode_, "str", "U"):
+    elif tpe in (str, "str", "U"): # np.unicode_,
         return types.StringType()
     # TimestampType
     elif tpe in (datetime.datetime, np.datetime64, "datetime64[ns]", "M"):

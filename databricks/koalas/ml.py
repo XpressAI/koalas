@@ -16,7 +16,7 @@
 
 from typing import List, Tuple, TYPE_CHECKING
 
-import numpy as np
+import nlcpy as np
 import pandas as pd
 import pyspark
 

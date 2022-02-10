@@ -21,7 +21,7 @@ from distutils.version import LooseVersion
 from typing import Any, Optional, Tuple, Union, TYPE_CHECKING, cast
 import types
 
-import numpy as np  # noqa: F401
+import nlcpy as np  # noqa: F401
 import pandas as pd
 import pyspark
 from pyspark.sql import functions as F

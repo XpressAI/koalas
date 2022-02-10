@@ -25,7 +25,7 @@ from functools import reduce
 from io import BytesIO
 import json
 
-import numpy as np
+import nlcpy as np
 import pandas as pd
 from pandas.api.types import is_datetime64_dtype, is_datetime64tz_dtype, is_list_like
 import pyarrow as pa

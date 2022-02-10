@@ -27,7 +27,7 @@ from distutils.version import LooseVersion
 from functools import partial, wraps, reduce
 from typing import Any, Generic, Iterable, List, Optional, Tuple, TypeVar, Union, cast
 
-import numpy as np
+import nlcpy as np
 import pandas as pd
 from pandas.core.accessor import CachedAccessor
 from pandas.io.formats.printing import pprint_thing

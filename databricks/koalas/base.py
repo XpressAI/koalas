@@ -24,7 +24,7 @@ from itertools import chain
 from typing import Any, Callable, Optional, Tuple, Union, cast, TYPE_CHECKING
 import warnings
 
-import numpy as np
+import nlcpy as np
 import pandas as pd  # noqa: F401
 from pandas.api.types import is_list_like, CategoricalDtype
 from pyspark import sql as spark

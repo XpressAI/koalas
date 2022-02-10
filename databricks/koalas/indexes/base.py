@@ -19,7 +19,7 @@ from typing import Any, List, Optional, Tuple, Union
 import warnings
 
 import pandas as pd
-import numpy as np
+import nlcpy as np
 from pandas.api.types import (
     is_list_like,
     is_interval_dtype,

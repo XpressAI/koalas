@@ -45,7 +45,7 @@ from typing import (
 )
 import datetime
 
-import numpy as np
+import nlcpy as np
 import pandas as pd
 from pandas.api.types import is_list_like, is_dict_like, is_scalar
 from pandas.api.extensions import ExtensionDtype
@@ -5087,84 +5087,84 @@ defaultdict(<class 'list'>, {'col..., 'col...})]
             pd.DataFrame.from_records(data, index, exclude, columns, coerce_float, nrows)
         )
 
-    def to_records(self, index=True, column_dtypes=None, index_dtypes=None) -> np.recarray:
-        """
-        Convert DataFrame to a NumPy record array.
+    # def to_records(self, index=True, column_dtypes=None, index_dtypes=None) -> np.recarray:
+    #     """
+    #     Convert DataFrame to a NumPy record array.
 
-        Index will be included as the first field of the record array if
-        requested.
+    #     Index will be included as the first field of the record array if
+    #     requested.
 
-        .. note:: This method should only be used if the resulting NumPy ndarray is
-            expected to be small, as all the data is loaded into the driver's memory.
+    #     .. note:: This method should only be used if the resulting NumPy ndarray is
+    #         expected to be small, as all the data is loaded into the driver's memory.
 
-        Parameters
-        ----------
-        index : bool, default True
-            Include index in resulting record array, stored in 'index'
-            field or using the index label, if set.
-        column_dtypes : str, type, dict, default None
-            If a string or type, the data type to store all columns. If
-            a dictionary, a mapping of column names and indices (zero-indexed)
-            to specific data types.
-        index_dtypes : str, type, dict, default None
-            If a string or type, the data type to store all index levels. If
-            a dictionary, a mapping of index level names and indices
-            (zero-indexed) to specific data types.
-            This mapping is applied only if `index=True`.
+    #     Parameters
+    #     ----------
+    #     index : bool, default True
+    #         Include index in resulting record array, stored in 'index'
+    #         field or using the index label, if set.
+    #     column_dtypes : str, type, dict, default None
+    #         If a string or type, the data type to store all columns. If
+    #         a dictionary, a mapping of column names and indices (zero-indexed)
+    #         to specific data types.
+    #     index_dtypes : str, type, dict, default None
+    #         If a string or type, the data type to store all index levels. If
+    #         a dictionary, a mapping of index level names and indices
+    #         (zero-indexed) to specific data types.
+    #         This mapping is applied only if `index=True`.
 
-        Returns
-        -------
-        numpy.recarray
-            NumPy ndarray with the DataFrame labels as fields and each row
-            of the DataFrame as entries.
+    #     Returns
+    #     -------
+    #     numpy.recarray
+    #         NumPy ndarray with the DataFrame labels as fields and each row
+    #         of the DataFrame as entries.
 
-        See Also
-        --------
-        DataFrame.from_records: Convert structured or record ndarray
-            to DataFrame.
-        numpy.recarray: An ndarray that allows field access using
-            attributes, analogous to typed columns in a
-            spreadsheet.
+    #     See Also
+    #     --------
+    #     DataFrame.from_records: Convert structured or record ndarray
+    #         to DataFrame.
+    #     numpy.recarray: An ndarray that allows field access using
+    #         attributes, analogous to typed columns in a
+    #         spreadsheet.
 
-        Examples
-        --------
-        >>> df = ks.DataFrame({'A': [1, 2], 'B': [0.5, 0.75]},
-        ...                   index=['a', 'b'])
-        >>> df
-           A     B
-        a  1  0.50
-        b  2  0.75
+    #     Examples
+    #     --------
+    #     >>> df = ks.DataFrame({'A': [1, 2], 'B': [0.5, 0.75]},
+    #     ...                   index=['a', 'b'])
+    #     >>> df
+    #        A     B
+    #     a  1  0.50
+    #     b  2  0.75
 
-        >>> df.to_records() # doctest: +SKIP
-        rec.array([('a', 1, 0.5 ), ('b', 2, 0.75)],
-                  dtype=[('index', 'O'), ('A', '<i8'), ('B', '<f8')])
+    #     >>> df.to_records() # doctest: +SKIP
+    #     rec.array([('a', 1, 0.5 ), ('b', 2, 0.75)],
+    #               dtype=[('index', 'O'), ('A', '<i8'), ('B', '<f8')])
 
-        The index can be excluded from the record array:
+    #     The index can be excluded from the record array:
 
-        >>> df.to_records(index=False) # doctest: +SKIP
-        rec.array([(1, 0.5 ), (2, 0.75)],
-                  dtype=[('A', '<i8'), ('B', '<f8')])
+    #     >>> df.to_records(index=False) # doctest: +SKIP
+    #     rec.array([(1, 0.5 ), (2, 0.75)],
+    #               dtype=[('A', '<i8'), ('B', '<f8')])
 
-        Specification of dtype for columns is new in pandas 0.24.0.
-        Data types can be specified for the columns:
+    #     Specification of dtype for columns is new in pandas 0.24.0.
+    #     Data types can be specified for the columns:
 
-        >>> df.to_records(column_dtypes={"A": "int32"}) # doctest: +SKIP
-        rec.array([('a', 1, 0.5 ), ('b', 2, 0.75)],
-                  dtype=[('index', 'O'), ('A', '<i4'), ('B', '<f8')])
+    #     >>> df.to_records(column_dtypes={"A": "int32"}) # doctest: +SKIP
+    #     rec.array([('a', 1, 0.5 ), ('b', 2, 0.75)],
+    #               dtype=[('index', 'O'), ('A', '<i4'), ('B', '<f8')])
 
-        Specification of dtype for index is new in pandas 0.24.0.
-        Data types can also be specified for the index:
+    #     Specification of dtype for index is new in pandas 0.24.0.
+    #     Data types can also be specified for the index:
 
-        >>> df.to_records(index_dtypes="<S2") # doctest: +SKIP
-        rec.array([(b'a', 1, 0.5 ), (b'b', 2, 0.75)],
-                  dtype=[('index', 'S2'), ('A', '<i8'), ('B', '<f8')])
-        """
-        args = locals()
-        kdf = self
+    #     >>> df.to_records(index_dtypes="<S2") # doctest: +SKIP
+    #     rec.array([(b'a', 1, 0.5 ), (b'b', 2, 0.75)],
+    #               dtype=[('index', 'S2'), ('A', '<i8'), ('B', '<f8')])
+    #     """
+    #     args = locals()
+    #     kdf = self
 
-        return validate_arguments_and_invoke_function(
-            kdf._to_internal_pandas(), self.to_records, pd.DataFrame.to_records, args
-        )
+    #     return validate_arguments_and_invoke_function(
+    #         kdf._to_internal_pandas(), self.to_records, pd.DataFrame.to_records, args
+    #     )
 
     def copy(self, deep=None) -> "DataFrame":
         """
